@@ -1,0 +1,318 @@
+CREATE TABLE CUSTOMER(
+	CUSTOMER_ID VARCHAR(20) PRIMARY KEY NOT NULL,
+	DRIVING_LICENSE_NO VARCHAR(50) NOT NULL,
+	NAME VARCHAR (100) NOT NULL,
+	CONTACT_NO VARCHAR (20) NOT NULL,
+	NO VARCHAR (50) NOT NULL,
+	STREET_NAME VARCHAR (100) NOT NULL,
+	CITY VARCHAR (100) NOT NULL
+
+);
+
+INSERT INTO CUSTOMER (CUSTOMER_ID,DRIVING_LICENSE_NO,NAME,CONTACT_NO,NO,STREET_NAME,CITY)
+VALUES
+('CL11','1','Kamal Rajapaksha','94761012325',89,'yatinuwara street','Kandy'),
+('CL12','2','Dananjaya Silva','94762123436',11,'senanayaka sterrt','Kandy'),
+('CL13','3','Adp Perera','94703234547',17,'johns street','Kandy'),
+('CL14','4','Yasith Rukmal','94703345658',128,'jampettah street','Kandy'),
+('CL15','5','Maneesha Nawanjana','94704456853',12,'colombo street','Kandy'),
+('CL16','6','Kawshan Palgama','94781122222',125,'kotugodella street','Kandy'),
+('CL17','7','Deshan Bandara','94771234567',117,'panchikawatta street','Kandy'),
+('CL18','8','Tharusha Nimesh','94701100221',91,'old moor street','Kandy'),
+('CL19','9','Tharidu Lakshitha','94709998881',37,'gotta street','Kandy'),
+('CL20','10','Afraz Mohamed','94778887772',120,'vinayalankara street','Kandy'),
+('CL21','11','Zahd Mohamed','94717776663',217,'colombo street','Battaramulla'),
+('CL22','12','Kasuni Ekanayaka','94716665554',77,'aderson street','Moratuwa'),
+('CL23','13','Piyath Bandara','94785554443',92,'first street','Kandy'),
+('CL24','14','Dulana Salitha','94754443334',81,'main street','Kandy'),
+('CL25','15','Harshana Nawarathna','94710000012',19,'second street','Colombo');
+
+
+select * from customer;
+
+
+CREATE TABLE OWNER(
+	OWNER_ID VARCHAR(20) PRIMARY KEY NOT NULL,
+	OWNER_NAME VARCHAR(100) NOT NULL,
+	ADRESS VARCHAR (100) NOT NULL,
+	CONTACT_NO VARCHAR (20) NOT NULL
+	
+);
+
+INSERT INTO OWNER (OWNER_ID,OWNER_NAME,ADRESS,CONTACT_NO)
+VALUES
+('O001', 'Yeran Binuja', '197 kothmale road, Nawalapitiya', '94771111111'),
+('O002', 'Amal Priyankara', '198 peradeniya road, Kandy', '94772222222'),
+('O003', 'Osada Thejan', '199 colombo street, colombo', '94773333333'),
+('O004', 'Miyuru Sankalpa', '200 abc street, Moratuwa', '94774444444'),
+('O005', 'Nimesha Jayathilaka', '201 main street, Gampaha', '94775555555'),
+('O006', 'Manoj Aravinda', '202 first street, Kandy', '94776666666'),
+('O007', 'Ravidu Sachintha', '203 second street, colombo', '94777777777'),
+('O008', 'Linara Bihagi', '204 third street, Panadura', '94778888888'),
+('O009', 'Ravi Chaminda', '205 samadi mawatha, Kandy', '94779999999'),
+('O010', 'Dehansa Yenuki', '206 avenue road, Colombo', '94711122222'),
+('O011', 'Nuwan Rathnayaka', '207 katunayaka road, colombo', '94712233333'),
+('O012', 'Chamara Sandeepa', '208 airport road, colombo', '94713344444'),
+('O013', 'Prasad Madumal', '209 kotuwa street, colombo', '94714455555'),
+('O014', 'Dineth Priyankara', '210 battaramulla road, colombo', '94715566666'),
+('O015', 'Pathum Rajapaksha', '211 battaramulla road, colombo', '94716677777');
+ 
+ 
+select * from owner;
+
+
+
+CREATE TABLE RENTAL_POLICY(
+	POLICY_ID VARCHAR(20) PRIMARY KEY NOT NULL,
+	POLICY_NAME VARCHAR (200) NOT NULL,
+	FREE_KM_PER_DAY INT NOT NULL
+
+);
+
+INSERT INTO RENTAL_POLICY(POLICY_ID,POLICY_NAME,FREE_KM_PER_DAY)
+VALUES
+('P001', '1 Day Rental', 100),
+('P002', '1 week Rental', 700),
+('P003', '2 week Rental', 1400 ),
+('P004', '1 Month Rental', 3000);
+
+
+
+
+select * from rental_policy;
+
+
+CREATE TABLE CAR(
+	CAR_ID VARCHAR(20) PRIMARY KEY NOT NULL,
+	CLASS VARCHAR (50) NOT NULL,
+	MODEL_YEAR VARCHAR(10),
+	MODEL VARCHAR(50) NOT NULL,
+	COLOR VARCHAR (30),
+	LICENSE_PLATE VARCHAR (8) NOT NULL,
+	MAKE VARCHAR (50),
+	OWNER_ID VARCHAR (20) NOT NULL,
+	
+	FOREIGN KEY(OWNER_ID) REFERENCES OWNER(OWNER_ID)
+
+);
+
+INSERT INTO CAR (CAR_ID,OWNER_ID,CLASS,MODEL_YEAR,MODEL,COLOR,LICENSE_PLATE,MAKE)
+VALUES
+('C001', 'O001', 'Sub compact', '2015', 'FIT', 'Brown', 'CAC-1461', 'Honda'),
+('C002', 'O002', 'Sub compact', '2013', 'AQUA', 'White', 'KY-2482', 'Toyota'),
+('C003', 'O003', 'Sub compact', '2017', 'YARIS', 'Black', 'CBB-1212', 'Toyota'),
+('C004', 'O004', 'Compact', '2010', 'RIO', 'White', 'KN-1412', 'Kia'),
+('C005', 'O005', 'Compact', '2014', 'FIESTA', 'Red', 'CAA-4712', 'Ford'),
+('C006', 'O006', 'Compact', '2016', 'CIVIC', 'White', 'CBC-7979', 'Honda'),
+('C007', 'O007', 'Sedans', '2011', 'PREMIO', 'Red', 'KN-8978', 'Toyota'),
+('C008', 'O008', 'Sedans', '2016', 'A6', 'Black', 'CAA-3212', 'Audi'),
+('C009', 'O009', 'Sedans', '2020', 'M5', 'Brown', 'CBC-9999', 'BMW'),
+('C010', 'O010', 'Luxury', '2017', 'S CLASS', 'White', 'BAA-5465', 'Benz'),
+('C011', 'O011', 'Luxury', '2015', 'GT', 'Black', 'CAC-1212', 'Bently'),
+('C012', 'O012', 'Luxury', '2016', 'PHANTOM', 'Yellow', 'KN-5555', 'Rolls'),
+('C013', 'O013', 'SUV', '2011', 'VEZEL', 'Red', 'CAC-9999', 'Honda'),
+('C014', 'O014', 'SUV', '2015', 'CHR', 'White', 'CAN-3588', 'Toyota'),
+('C015', 'O015', 'SUV', '2014', 'EXPLORER', 'Red', 'CA-1458', 'Ford');
+
+
+select * from car;
+
+CREATE TABLE ADDITIONAL_KM(
+	CLASS_ID VARCHAR (50) PRIMARY KEY NOT NULL,
+	CLASS VARCHAR (100) NOT NULL,
+	CHARGES_PER_ADDITIONAL_KM VARCHAR (20) NOT NULL,
+	CAR_ID VARCHAR (20) NOT NULL,
+	
+	FOREIGN KEY(CAR_ID) REFERENCES CAR(CAR_ID)
+
+	
+);
+
+INSERT INTO ADDITIONAL_KM(CLASS_ID,CLASS,CHARGES_PER_ADDITIONAL_KM,CAR_ID)
+VALUES 
+('S001', 'Sub compact', '1000', 'C001'),
+('S002', 'Sub compact', '1000', 'C002'),
+('S003', 'Sub compact', '1000', 'C003'),
+('S004', 'Compact', '2000', 'C004'),
+('S005', 'Compact', '2000', 'C005'),
+('S006', 'Compact', '2000', 'C006'),
+('S007', 'Sedans', '3000', 'C007'),
+('S008', 'Sedans', '3000', 'C008'),
+('S009', 'Sedans', '3000', 'C009'),
+('S010', 'Luxury', '4000', 'C010'),
+('S011', 'Luxury', '4000', 'C011'),
+('S012', 'Luxury', '4000', 'C012'),
+('S013', 'SUV', '5000', 'C013'),
+('S014', 'SUV', '5000', 'C014'),
+('S015', 'SUV', '5000', 'C015');
+
+
+select * from ADDITIONAL_KM ;
+
+CREATE TABLE RENTAL(
+	RENTAL_ID VARCHAR (20) PRIMARY KEY NOT NULL,
+	RENTAL_DATE DATE NOT NULL,
+	RETURN_DATE DATE NOT NULL,
+	ODOMETER_READ_RENTAL INT NOT NULL,
+	ODOMETER_READ_RETURN INT NOT NULL,
+	CUSTOMER_ID VARCHAR (20) NOT NULL,
+	CAR_ID VARCHAR (20) NOT NULL,
+	
+	FOREIGN KEY(CUSTOMER_ID) REFERENCES CUSTOMER(CUSTOMER_ID),
+	FOREIGN KEY(CAR_ID) REFERENCES CAR(CAR_ID)
+
+
+);
+
+INSERT INTO RENTAL(RENTAL_ID,RENTAL_DATE,RETURN_DATE,ODOMETER_READ_RENTAL,ODOMETER_READ_RETURN,CUSTOMER_ID,CAR_ID)
+VALUES
+('R001', '2022-01-10', '2022-02-10', '100', '300', 'CL11', 'C001'),
+('R002', '2022-03-10', '2022-04-10', '100', '350', 'CL12', 'C002'),
+('R003', '2022-05-10', '2022-06-10', '100', '400', 'CL13', 'C003'),
+('R004', '2022-07-10', '2022-08-10', '100', '450', 'CL14', 'C004'),
+('R005', '2022-09-10', '2022-10-10', '100', '500', 'CL15', 'C005'),
+('R006', '2022-11-10', '2022-12-10', '100', '550', 'CL16', 'C006'),
+('R007', '2023-01-15', '2023-02-15', '100', '600', 'CL17', 'C007'),
+('R008', '2023-03-15', '2023-04-15', '100', '650', 'CL18', 'C008'),
+('R009', '2023-05-15', '2023-06-15', '100', '700', 'CL19', 'C009'),
+('R010', '2023-07-15', '2023-08-15', '100', '750', 'CL20', 'C010'),
+('R011', '2023-09-15', '2023-10-15', '100', '800', 'CL21', 'C011'),
+('R012', '2023-11-15', '2023-12-15', '100', '850', 'CL22', 'C012'),
+('R013', '2024-01-17', '2024-02-17', '100', '900', 'CL23', 'C013'),
+('R014', '2024-03-17', '2024-04-17', '100', '950', 'CL24', 'C014'),
+('R015', '2024-05-17', '2024-06-17', '100', '975', 'CL25', 'C015');
+
+
+select * from RENTAL ;
+
+CREATE TABLE INSUARANCE_COMPANY(
+	INSUARANCE_ID VARCHAR(20) PRIMARY KEY NOT NULL,
+	COMPANY_NAME VARCHAR(100) NOT NULL,
+	CONTACT_NO VARCHAR(20) NOT NULL,
+	RENTAL_ID VARCHAR (20) NOT NULL,
+	
+	FOREIGN KEY(RENTAL_ID) REFERENCES RENTAL(RENTAL_ID)
+	
+
+);
+
+INSERT INTO INSUARANCE_COMPANY(INSUARANCE_ID,COMPANY_NAME,CONTACT_NO,RENTAL_ID)
+VALUES 
+('INS01', 'AIA INSUARANCE', '94111191199', 'R001' ),
+('INS02', 'AIA INSUARANCE', '94111191199', 'R002' ),
+('INS03', 'AIA INSUARANCE', '94111191199', 'R003' ),
+('INS04', 'AIA INSUARANCE', '94111191199', 'R004' ),
+('INS05', 'AIA INSUARANCE', '94111191199', 'R005' ),
+('INS06', 'AIA INSUARANCE', '94111191199', 'R006' ),
+('INS07', 'AIA INSUARANCE', '94111191199', 'R007' ),
+('INS08', 'AIA INSUARANCE', '94111191199', 'R008' ),
+('INS09', 'AIA INSUARANCE', '94111191199', 'R009' ),
+('INS10', 'AIA INSUARANCE', '94111191199', 'R010' ),
+('INS11', 'AIA INSUARANCE', '94111191199', 'R011' ),
+('INS12', 'AIA INSUARANCE', '94111191199', 'R012' ),
+('INS13', 'AIA INSUARANCE', '94111191199', 'R013' ),
+('INS14', 'AIA INSUARANCE', '94111191199', 'R014' ),
+('INS15', 'AIA INSUARANCE', '94111191199', 'R015' );
+
+
+
+select * from INSUARANCE_COMPANY ;
+
+CREATE TABLE BILLING_DETAILS(
+	BILLING_ID VARCHAR(20) PRIMARY KEY NOT NULL,
+	BILLING_DATE DATE NOT NULL,
+	TOTAL_AMOUNT VARCHAR(20) NOT NULL,
+	RENTAL_ID VARCHAR(20) NOT NULL,
+	
+	FOREIGN KEY(RENTAL_ID) REFERENCES RENTAL(RENTAL_ID)
+
+
+);
+
+INSERT INTO BILLING_DETAILS(BILLING_ID,BILLING_DATE,TOTAL_AMOUNT,RENTAL_ID)
+VALUES
+('BL01', '2022-02-10', '15000', 'R001'),
+('BL02', '2022-04-10', '20000', 'R002'),
+('BL03', '2022-06-10', '25000', 'R003'),
+('BL04', '2022-08-10', '30000', 'R004'),
+('BL05', '2022-10-10', '35000', 'R005'),
+('BL06', '2022-12-10', '40000', 'R006'),
+('BL07', '2023-02-15', '45000', 'R007'),
+('BL08', '2023-04-15', '50000', 'R008'),
+('BL09', '2023-06-15', '55000', 'R009'),
+('BL10', '2023-08-15', '60000', 'R010'),
+('BL11', '2023-10-15', '65000', 'R011'),
+('BL12', '2023-12-15', '70000', 'R012'),
+('BL13', '2024-02-17', '75000', 'R013'),
+('BL14', '2024-04-17', '80000', 'R014'),
+('BL15', '2024-06-17', '85000', 'R015');
+
+select * from BILLING_DETAILS ;
+
+CREATE TABLE PRICING(
+	PRICING_ID VARCHAR(20) PRIMARY KEY NOT NULL,
+	CLASS VARCHAR(50) NOT NULL,
+	PRICING_1_DAY VARCHAR(20) NOT NULL,
+	PRICING_1_WEEK VARCHAR(20) NOT NULL,
+	PRICING_2_WEEK VARCHAR(20) NOT NULL,
+	PRICING_1_MONTH VARCHAR(20) NOT NULL,
+	FIXED_AMOUNT VARCHAR(20) NOT NULL,
+	CAR_ID VARCHAR (20) NOT NULL,
+	POLICY_ID VARCHAR(20) NOT NULL,
+	
+	FOREIGN KEY(CAR_ID) REFERENCES CAR(CAR_ID),
+	FOREIGN KEY(POLICY_ID) REFERENCES RENTAL_POLICY(POLICY_ID)
+
+);
+
+INSERT INTO PRICING(PRICING_ID,CLASS,PRICING_1_DAY,PRICING_1_WEEK,PRICING_2_WEEK,PRICING_1_MONTH,FIXED_AMOUNT,CAR_ID,POLICY_ID)
+VALUES 
+('PR01', 'Sub compact', '1000','2000', '3000', '4000', '5000', 'C001', 'P001' ),
+('PR02', 'Sub compact', '1000','2000', '3000', '4000', '5000', 'C002', 'P002' ),
+('PR03', 'Sub compact', '1000','2000', '3000', '4000', '5000', 'C003', 'P003' ),
+('PR04', 'Compact', '1100','2100', '3100', '4100', '6000', 'C004', 'P004' ),
+('PR05', 'Compact', '1100','2100', '3100', '4100', '6000', 'C005', 'P001' ),
+('PR06', 'Compact', '1100','2100', '3100', '4100', '6000', 'C006', 'P002' ),
+('PR07', 'Sedans', '1200','2200', '3200', '4200', '7000', 'C007', 'P003' ),
+('PR08', 'Sedans', '1200','2200', '3200', '4200', '7000', 'C008', 'P004' ),
+('PR09', 'Sedans', '1200','2200', '3200', '4200', '7000', 'C009', 'P001' ),
+('PR10', 'Luxury', '1300','2300', '3300', '4300', '8000', 'C010', 'P002' ),
+('PR11', 'Luxury', '1300','2300', '3300', '4300', '8000', 'C011', 'P003' ),
+('PR12', 'Luxury', '1300','2300', '3300', '4300', '8000', 'C012', 'P004' ),
+('PR13', 'SUV', '1400','2400', '3400', '4400', '9000', 'C013', 'P001' ),
+('PR14', 'SUV', '1400','2400', '3400', '4400', '9000', 'C014', 'P002' ),
+('PR15', 'SUV', '1400','2400', '3400', '4400', '9000', 'C015', 'P003' );
+
+select * from PRICING ;
+
+
+
+
+--TASK 6
+--List of Borrowers of a particular car type 
+
+SELECT C.CAR_ID, C.MODEL, C.CLASS, R.RENTAL_ID, R.RENTAL_DATE, R.RETURN_DATE, RC.CUSTOMER_ID, RC.NAME
+FROM CAR C
+JOIN RENTAL R ON C.CAR_ID = R.CAR_ID
+JOIN CUSTOMER RC ON R.CUSTOMER_ID = RC.CUSTOMER_ID
+WHERE C.CLASS = 'Sub compact';
+
+
+
+
+--Sum of payments received with in a given duration
+
+SELECT SUM(CAST(TOTAL_AMOUNT AS INT)) AS TOTAL_PAYMENTS
+FROM BILLING_DETAILS
+WHERE BILLING_DATE BETWEEN '2022-01-01' AND '2022-12-31';
+
+
+
+
+
+
+--List of car details that is in the fleet 
+
+SELECT CAR_ID, CLASS, MODEL_YEAR, MODEL, COLOR, LICENSE_PLATE, MAKE
+FROM CAR;
+
